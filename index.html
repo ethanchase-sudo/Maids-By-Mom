@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maids By Mom — House Cleaning in Pinellas Park, Florida</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Bitter:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Shrikhand&display=swap" rel="stylesheet">
+<style>
+:root{
+  --plum:#3f2c57;
+  --plum-2:#5b4478;
+  --violet:#7d64a3;
+  --lav:#cbbbe3;
+  --lilac:#ece4f5;
+  --mist:#f6f2fa;
+  --cream:#fbf9f5;
+  --ink:#2a2233;
+  --muted:#6e6479;
+  --sage:#7fa36f;
+  --line:rgba(63,44,87,.14);
+  --display:'Gloock', Georgia, serif;
+  --body:'Bitter', Georgia, serif;
+  --script:'Shrikhand', cursive;
+  --r:28px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--ink);background:var(--cream);font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.02;letter-spacing:-.01em;text-wrap:balance}
+p{text-wrap:pretty}
+.wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+.eyebrow{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--violet);font-weight:500;display:inline-flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:8px;height:8px;background:currentColor;transform:rotate(45deg);display:inline-block}
+em.it{font-family:var(--body);font-style:italic;font-weight:400;color:var(--violet)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:12px;padding:16px 28px;border-radius:999px;font-weight:500;font-size:16px;transition:transform .3s cubic-bezier(.2,.8,.2,1),background .3s,color .3s,box-shadow .3s;position:relative;white-space:nowrap}
+.btn-primary{background:var(--plum);color:#fff;box-shadow:0 10px 30px -12px rgba(63,44,87,.6)}
+.btn-primary:hover{background:var(--plum-2);transform:translateY(-2px)}
+.btn-ghost{border:1.5px solid var(--plum);color:var(--plum)}
+.btn-ghost:hover{background:var(--plum);color:#fff}
+.btn .arr{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center;transition:transform .3s}
+.btn-ghost .arr{background:rgba(63,44,87,.08)}
+.btn:hover .arr{transform:translateX(3px) rotate(-45deg)}
+
+/* ---------- top strip ---------- */
+.strip{background:var(--plum);color:#efe8f7;font-size:14px}
+.strip .wrap{display:flex;justify-content:space-between;align-items:center;height:42px;gap:20px}
+.strip b{font-weight:600;color:#fff}
+.strip a:hover{color:#fff}
+.strip .sp{display:inline-block;color:var(--lav);margin-right:8px}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;transition:background .35s,box-shadow .35s,backdrop-filter .35s}
+.nav.scrolled{background:rgba(251,249,245,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:86px;transition:height .35s}
+.nav.scrolled .wrap{height:70px}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:52px;height:52px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--line)}
+.brand .wm{font-family:var(--script);font-size:26px;color:var(--plum);line-height:1}
+.brand .wm small{display:block;font-family:var(--body);font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.links{display:flex;gap:36px;font-size:16px}
+.links a{position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1.5px;background:var(--violet);transform:scaleX(0);transform-origin:right;transition:transform .35s}
+.links a:hover::after,.links a.on::after{transform:scaleX(1);transform-origin:left}
+.nav-cta{display:flex;gap:12px;align-items:center}
+.burger{display:none;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--plum);position:relative}
+.burger span{position:absolute;left:13px;right:13px;height:1.5px;background:var(--plum);transition:.3s}
+.burger span:nth-child(1){top:18px}.burger span:nth-child(2){top:26px}
+.menu-open .burger span:nth-child(1){top:22px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){top:22px;transform:rotate(-45deg)}
+.mobile-menu{position:fixed;inset:0;background:var(--plum);color:#fff;z-index:40;display:flex;flex-direction:column;justify-content:center;padding:40px;gap:12px;clip-path:circle(0 at calc(100% - 60px) 60px);transition:clip-path .6s cubic-bezier(.7,0,.2,1)}
+.menu-open .mobile-menu{clip-path:circle(150% at calc(100% - 60px) 60px)}
+.mobile-menu a{font-family:var(--display);font-size:44px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:40px 0 110px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.hero h1{font-size:clamp(54px,7.4vw,112px);color:var(--plum)}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line>span{display:inline-block;transform:translateY(105%);animation:rise 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 .line:nth-child(2)>span{animation-delay:.12s}
+.hero h1 .line:nth-child(3)>span{animation-delay:.24s}
+@keyframes rise{to{transform:none}}
+.hero h1 em{font-family:var(--body);font-style:italic;font-weight:400;color:var(--violet);letter-spacing:-.03em}
+.hero .lede{font-size:20px;color:var(--muted);max-width:520px;margin:30px 0 40px;opacity:0;animation:fade 1s .5s forwards}
+.hero .ctas{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fade 1s .65s forwards}
+@keyframes fade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.hero-meta{display:flex;gap:34px;margin-top:56px;padding-top:28px;border-top:1px solid var(--line);opacity:0;animation:fade 1s .8s forwards}
+.hero-meta div{font-size:14px;color:var(--muted);line-height:1.4}
+.hero-meta b{display:block;font-family:var(--display);font-weight:400;font-size:30px;color:var(--plum);margin-bottom:4px}
+
+.hero-art{position:relative;height:640px}
+.arch{position:absolute;right:0;top:0;width:78%;height:100%;border-radius:400px 400px 28px 28px;overflow:hidden;box-shadow:0 40px 80px -40px rgba(63,44,87,.5)}
+.arch img{width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.loaded .arch img{transform:scale(1)}
+.hero-art .pebble{position:absolute;left:0;bottom:40px;width:46%;aspect-ratio:1;border-radius:50%;overflow:hidden;border:10px solid var(--cream);box-shadow:0 30px 60px -30px rgba(63,44,87,.45)}
+.hero-art .pebble img{width:100%;height:100%;object-fit:cover}
+.seal{position:absolute;left:8%;top:30px;width:150px;height:150px;animation:spin 22s linear infinite;z-index:2}
+.seal text{font-family:var(--body);font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;fill:var(--plum)}
+.seal-core{position:absolute;left:calc(8% + 45px);top:75px;width:60px;height:60px;border-radius:50%;background:var(--plum);color:#fff;display:grid;place-items:center;z-index:3;font-size:26px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.twinkle{position:absolute;color:var(--violet);pointer-events:none;animation:tw 3s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2;transform:scale(.6) rotate(0)}50%{opacity:1;transform:scale(1) rotate(20deg)}}
+.hero-bg{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 60% at 85% 20%,var(--lilac),transparent 70%)}
+
+/* ---------- marquee ---------- */
+.marquee{background:var(--lilac);border-block:1px solid var(--line);overflow:hidden;padding:26px 0}
+.marquee .track{display:flex;gap:56px;width:max-content;animation:mq 40s linear infinite}
+.marquee span{font-family:var(--display);font-size:36px;color:var(--plum);display:flex;align-items:center;gap:56px;white-space:nowrap}
+.marquee span::after{content:"✦";font-size:18px;color:var(--violet)}
+.marquee span:nth-child(even){font-family:var(--body);font-style:italic;color:var(--violet)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding:140px 0}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:70px}
+.sec-head h2{font-size:clamp(44px,5.2vw,80px);color:var(--plum);margin-top:20px}
+.sec-head p{color:var(--muted);font-size:19px;max-width:480px;justify-self:end}
+
+/* story */
+.story .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:90px;align-items:center}
+.story-art{position:relative}
+.story-art .card{background:var(--mist);border-radius:var(--r);overflow:hidden;aspect-ratio:3/2.2;display:grid;place-items:center}
+.story-art .card img{width:100%;height:100%;object-fit:cover}
+.story-art .tag{position:absolute;right:-24px;bottom:-30px;background:var(--plum);color:#fff;border-radius:22px;padding:24px 28px;max-width:270px;font-size:15px;line-height:1.5;box-shadow:0 30px 60px -30px rgba(63,44,87,.7)}
+.story-art .tag b{font-family:var(--script);font-weight:400;font-size:22px;display:block;margin-bottom:6px;color:var(--lav)}
+.story h2{font-size:clamp(40px,4.4vw,66px);color:var(--plum);margin:22px 0 30px}
+.story p{color:var(--muted);margin-bottom:18px;font-size:18px}
+.story p.lead{font-size:23px;color:var(--ink);line-height:1.5}
+.sig{font-family:var(--script);font-size:30px;color:var(--violet);margin-top:24px}
+
+/* services explorer */
+.services{background:var(--plum);color:#efe8f7;overflow:hidden}
+.services .sec-head h2{color:#fff}
+.services .sec-head p{color:#cdbfe0}
+.services .eyebrow{color:var(--lav)}
+.explorer{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:start}
+.svc-list{list-style:none;border-top:1px solid rgba(255,255,255,.14)}
+.svc-list li{border-bottom:1px solid rgba(255,255,255,.14)}
+.svc-list button{width:100%;display:grid;grid-template-columns:52px 1fr auto;align-items:center;padding:22px 0;text-align:left;transition:padding .4s,color .3s;color:#cdbfe0}
+.svc-list .n{font-size:13px;letter-spacing:.1em;opacity:.7}
+.svc-list .t{font-family:var(--display);font-size:clamp(26px,2.4vw,36px);line-height:1.1}
+.svc-list .pl{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:grid;place-items:center;transition:.4s}
+.svc-list button:hover{color:#fff;padding-left:10px}
+.svc-list button.on{color:#fff;padding-left:14px}
+.svc-list button.on .pl{background:var(--lav);color:var(--plum);border-color:var(--lav);transform:rotate(45deg)}
+.svc-panel{position:sticky;top:110px;background:var(--cream);color:var(--ink);border-radius:var(--r);overflow:hidden;box-shadow:0 50px 100px -40px rgba(0,0,0,.5)}
+.svc-panel .img{aspect-ratio:16/10;overflow:hidden;background:var(--mist);position:relative}
+.svc-panel .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .5s,transform .8s cubic-bezier(.2,.8,.2,1)}
+.svc-panel .img img.out{opacity:0;transform:scale(1.05)}
+.svc-panel .body{padding:34px 40px 40px}
+.svc-panel h3{font-size:36px;color:var(--plum);margin-bottom:14px}
+.svc-panel p{color:var(--muted);font-size:16.5px;min-height:150px}
+.svc-panel .row{display:flex;justify-content:space-between;align-items:center;margin-top:26px;padding-top:22px;border-top:1px solid var(--line);gap:16px;flex-wrap:wrap}
+.svc-panel .from{font-size:14px;color:var(--muted)}
+.svc-panel .from b{font-family:var(--display);font-weight:400;font-size:30px;color:var(--plum);margin-left:6px}
+.fadeswap{animation:fs .5s ease}
+@keyframes fs{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* packages */
+.packages{background:var(--mist)}
+.pk-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.pk{background:#fff;border-radius:var(--r);padding:16px 16px 30px;display:flex;flex-direction:column;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s;border:1px solid var(--line);position:relative}
+.pk:hover{transform:translateY(-8px);box-shadow:0 40px 70px -40px rgba(63,44,87,.45)}
+.pk .ph{aspect-ratio:1;border-radius:18px;overflow:hidden;background:var(--lilac)}
+.pk .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.pk:hover .ph img{transform:scale(1.05)}
+.pk .in{padding:24px 12px 0;display:flex;flex-direction:column;flex:1}
+.pk .k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--violet)}
+.pk h3{font-size:28px;color:var(--plum);margin:10px 0 12px;min-height:58px}
+.pk p{font-size:15px;color:var(--muted);flex:1}
+.pk .price{display:flex;align-items:baseline;gap:6px;margin:22px 0 18px}
+.pk .price .d{font-size:22px;color:var(--plum);font-family:var(--display)}
+.pk .price .v{font-family:var(--display);font-size:58px;line-height:1;color:var(--plum)}
+.pk .price .was{font-size:15px;color:var(--muted);text-decoration:line-through;margin-left:8px;display:none}
+.disc-on .pk .price .was{display:inline}
+.pk .btn{justify-content:center}
+.pk.feat{background:var(--plum);color:#fff;border-color:var(--plum)}
+.pk.feat h3,.pk.feat .price .v,.pk.feat .price .d{color:#fff}
+.pk.feat p,.pk.feat .price .was{color:#cdbfe0}
+.pk.feat .k{color:var(--lav)}
+.pk.feat .btn-primary{background:var(--lav);color:var(--plum)}
+.pk .ribbon{position:absolute;top:30px;right:30px;background:var(--cream);color:var(--plum);font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:7px 14px;border-radius:999px;z-index:2}
+.pk-tools{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;gap:20px;flex-wrap:wrap}
+.toggle{display:inline-flex;align-items:center;gap:14px;background:#fff;border:1px solid var(--line);padding:8px 8px 8px 22px;border-radius:999px;font-size:15px}
+.switch{width:58px;height:32px;border-radius:999px;background:var(--lav);position:relative;transition:background .3s}
+.switch::after{content:"";position:absolute;top:4px;left:4px;width:24px;height:24px;border-radius:50%;background:#fff;transition:transform .35s cubic-bezier(.2,.8,.2,1);box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.disc-on .switch{background:var(--plum)}
+.disc-on .switch::after{transform:translateX(26px)}
+.pk-note{font-size:14px;color:var(--muted)}
+
+/* promo */
+.promo{padding:0;background:var(--mist)}
+.promo-card{position:relative;border-radius:36px;overflow:hidden;min-height:520px;display:grid;grid-template-columns:1fr 1fr;background:var(--lilac)}
+.promo-card .ph{position:relative}
+.promo-card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.promo-card .tx{padding:70px;display:flex;flex-direction:column;justify-content:center}
+.promo-card .big{font-family:var(--display);font-size:clamp(90px,11vw,170px);line-height:.85;color:var(--plum)}
+.promo-card .big sup{font-size:.4em;vertical-align:top;position:relative;top:.25em}
+.promo-card h3{font-size:clamp(32px,3vw,46px);color:var(--plum);margin:18px 0 14px}
+.promo-card p{color:var(--muted);margin-bottom:30px;max-width:420px}
+
+/* manifesto */
+.manifesto{padding:170px 0;text-align:center;background:var(--mist)}
+.manifesto q{quotes:none;font-family:var(--display);font-size:clamp(40px,5.6vw,88px);line-height:1.08;color:var(--plum);display:block;max-width:1100px;margin:0 auto}
+.manifesto q .w{opacity:.14;transition:opacity .6s}
+.manifesto q .w.lit{opacity:1}
+.manifesto .mom{font-family:var(--script);color:var(--violet)}
+.manifesto cite{display:block;margin-top:40px;font-style:normal;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+
+/* eco */
+.eco .wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.eco .eyebrow{color:var(--sage)}
+.eco h2{font-size:clamp(40px,4.6vw,70px);color:var(--plum);margin:20px 0 26px}
+.eco h2 em{font-family:var(--body);font-style:italic;color:var(--sage)}
+.eco-list{margin-top:36px;display:grid;gap:0;border-top:1px solid var(--line)}
+.eco-list div{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:22px 0;border-bottom:1px solid var(--line)}
+.eco-list b{font-family:var(--display);font-weight:400;font-size:24px;color:var(--plum)}
+.eco-list span{color:var(--muted);font-size:16px}
+.eco-art{position:relative;height:620px}
+.eco-art .a{position:absolute;inset:0 80px 80px 0;border-radius:var(--r);overflow:hidden}
+.eco-art .b{position:absolute;right:0;bottom:0;width:48%;aspect-ratio:1;border-radius:var(--r);overflow:hidden;border:10px solid var(--cream);background:#f7f3fb}
+.eco-art img{width:100%;height:100%;object-fit:cover}
+.recipe{position:absolute;left:26px;bottom:110px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-radius:18px;padding:18px 22px;max-width:300px;font-size:14px;color:var(--muted);line-height:1.5}
+.recipe b{display:block;color:var(--sage);font-size:12px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;font-weight:600}
+
+/* why */
+.why{background:var(--cream);border-top:1px solid var(--line)}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
+.why-grid div{padding:40px 30px 10px 0;border-right:1px solid var(--line);margin-right:30px}
+.why-grid div:last-child{border-right:0;margin-right:0}
+.why-grid .n{font-family:var(--display);font-size:20px;color:var(--violet)}
+.why-grid h3{font-size:30px;color:var(--plum);margin:40px 0 14px}
+.why-grid p{color:var(--muted);font-size:15.5px}
+
+/* contact */
+.contact{background:var(--plum);color:#efe8f7;padding:130px 0}
+.contact .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:80px;align-items:start}
+.contact .eyebrow{color:var(--lav)}
+.contact h2{font-size:clamp(46px,5.4vw,84px);color:#fff;margin:22px 0 26px}
+.contact h2 em{font-family:var(--body);font-style:italic;color:var(--lav)}
+.contact p{color:#cdbfe0;font-size:18px;max-width:440px}
+.c-lines{margin-top:46px;display:grid;gap:4px}
+.c-lines a{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:20px;color:#fff;transition:padding .35s}
+.c-lines a:hover{padding-left:10px}
+.c-lines small{display:block;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--lav);margin-bottom:4px}
+.form{background:var(--cream);color:var(--ink);border-radius:32px;padding:44px;position:relative;overflow:hidden}
+.form h3{font-size:34px;color:var(--plum);margin-bottom:6px}
+.form .sub{color:var(--muted);font-size:15px;margin-bottom:28px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{position:relative}
+.field.full{grid-column:1/-1}
+.field input,.field textarea,.field select{width:100%;font:inherit;font-size:16px;padding:24px 18px 10px;border:1.5px solid var(--line);border-radius:16px;background:#fff;color:var(--ink);outline:none;transition:border .3s,box-shadow .3s;appearance:none}
+.field textarea{min-height:110px;resize:vertical}
+.field label{position:absolute;left:19px;top:17px;font-size:16px;color:var(--muted);pointer-events:none;transition:.25s}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--violet);box-shadow:0 0 0 4px rgba(125,100,163,.14)}
+.field input:focus+label,.field input:not(:placeholder-shown)+label,.field textarea:focus+label,.field textarea:not(:placeholder-shown)+label,.field select+label{top:7px;font-size:12px;letter-spacing:.06em;color:var(--violet)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;grid-column:1/-1;margin:4px 0}
+.chips .lbl{width:100%;font-size:13px;color:var(--muted);margin-bottom:2px}
+.chip{padding:10px 16px;border-radius:999px;border:1.5px solid var(--line);font-size:14px;transition:.25s;background:#fff}
+.chip:hover{border-color:var(--violet)}
+.chip.on{background:var(--plum);color:#fff;border-color:var(--plum)}
+.form .btn{width:100%;justify-content:center;margin-top:20px}
+.form .priv{font-size:12.5px;color:var(--muted);margin-top:14px;text-align:center}
+.thanks{position:absolute;inset:0;background:var(--cream);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px;opacity:0;pointer-events:none;transition:opacity .5s}
+.thanks.show{opacity:1;pointer-events:auto}
+.thanks img{width:230px;border-radius:20px;margin-bottom:24px}
+.thanks h3{font-size:40px}
+
+/* footer */
+footer{background:#2f2141;color:#bfb0d4;padding:90px 0 40px;overflow:hidden}
+.f-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:70px;border-bottom:1px solid rgba(255,255,255,.1)}
+.f-top h4{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--lav);margin-bottom:18px}
+.f-top a{display:block;padding:4px 0;transition:color .25s}
+.f-top a:hover{color:#fff}
+.f-top .brand .wm{color:#fff}
+.f-top .brand .wm small{color:#a796bf}
+.f-top p{margin-top:20px;font-size:15px;max-width:320px}
+.f-giant{font-family:var(--script);font-size:clamp(80px,15vw,240px);line-height:1;color:rgba(203,187,227,.1);text-align:center;margin:40px 0 10px;white-space:nowrap}
+.f-bot{display:flex;justify-content:space-between;font-size:13px;flex-wrap:wrap;gap:12px}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* sparkle burst */
+.spark{position:fixed;pointer-events:none;z-index:999;color:var(--violet);font-size:14px;animation:burst .8s ease-out forwards}
+@keyframes burst{from{opacity:1;transform:translate(0,0) scale(1)}to{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.3) rotate(90deg)}}
+
+/* responsive */
+@media (max-width:1100px){
+  .links{display:none}.burger{display:block}.nav-cta .btn{display:none}
+  .hero .wrap,.story .wrap,.explorer,.eco .wrap,.contact .wrap,.sec-head{grid-template-columns:1fr}
+  .sec-head p{justify-self:start}
+  .hero-art{height:520px}
+  .pk-grid{grid-template-columns:1fr 1fr}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .why-grid div:nth-child(2){border-right:0;margin-right:0}
+  .promo-card{grid-template-columns:1fr}.promo-card .ph{min-height:320px}
+  .f-top{grid-template-columns:1fr 1fr}
+  .svc-panel{position:relative;top:0}
+  .story-art .tag{right:12px}
+}
+@media (max-width:640px){
+  .wrap{padding:0 22px}
+  .strip .hide-s{display:none}
+  .sec{padding:96px 0}
+  .pk-grid,.why-grid,.fgrid{grid-template-columns:1fr}
+  .why-grid div{border-right:0;margin-right:0;border-bottom:1px solid var(--line)}
+  .hero-meta{gap:20px;flex-wrap:wrap}
+  .hero-art{height:440px}
+  .seal{width:110px;height:110px}.seal-core{display:none}
+  .promo-card .tx,.form{padding:30px}
+  .eco-list div{grid-template-columns:1fr;gap:4px}
+  .eco-art{height:460px}
+  .f-top{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="strip">
+  <div class="wrap">
+    <div><span class="sp">✦</span><b>15% off</b> &nbsp;your first clean with Maids By Mom</div>
+    <div class="hide-s"><a href="tel:7027216911">(702) 721-6911</a> &nbsp;·&nbsp; Pinellas Park, FL</div>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="brand" aria-label="Maids By Mom home">
+      <img src="assets/logo-square.png" alt="Maids By Mom logo">
+      <span class="wm">Maids By Mom<small>Pinellas Park · Florida</small></span>
+    </a>
+    <nav class="links">
+      <a href="#story">Our Story</a>
+      <a href="#services">Services</a>
+      <a href="#packages">Packages</a>
+      <a href="#eco">Eco-Friendly</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary magic">Book now <span class="arr">→</span></a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="mobile-menu" id="mm">
+  <a href="#story">Our Story</a><a href="#services">Services</a><a href="#packages">Packages</a><a href="#eco">Eco-Friendly</a><a href="#contact">Book now</a>
+</div>
+
+<main id="top">
+<!-- HERO -->
+<section class="hero" data-screen-label="Hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">A little magic in every clean</span>
+      <h1 style="margin-top:26px">
+        <span class="line"><span>A clean home</span></span>
+        <span class="line"><span>is a <em>calm</em></span></span>
+        <span class="line"><span>home.</span></span>
+      </h1>
+      <p class="lede">Professional-quality cleaning with the warmth, reliability and care you'd expect from family. Because your home deserves more than just clean — it deserves <i>Mom clean</i>.</p>
+      <div class="ctas">
+        <a href="#contact" class="btn btn-primary magic">Request a free quote <span class="arr">→</span></a>
+        <a href="#packages" class="btn btn-ghost">See packages <span class="arr">→</span></a>
+      </div>
+      <div class="hero-meta">
+        <div><b>$120</b>Cleanings from</div>
+        <div><b>8</b>Ways we can help</div>
+        <div><b>15%</b>Off your first visit</div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="arch"><img src="assets/hero-towels.jpg" alt="Folded towels, spray bottle and scrub brush in morning sunlight"></div>
+      <div class="pebble"><img src="assets/lavender-towels.jpg" alt="Folded towels with lavender in a wicker basket"></div>
+      <svg class="seal" viewBox="0 0 150 150" aria-hidden="true">
+        <defs><path id="c" d="M75,75 m-58,0 a58,58 0 1,1 116,0 a58,58 0 1,1 -116,0"/></defs>
+        <circle cx="75" cy="75" r="74" fill="#fbf9f5"/>
+        <text><textPath href="#c">Founded by two single moms ✦ Mom clean ✦ </textPath></text>
+      </svg>
+      <div class="seal-core">♡</div>
+      <span class="twinkle" style="right:6%;top:8%;font-size:30px">✦</span>
+      <span class="twinkle" style="right:2%;top:24%;font-size:16px;animation-delay:.8s">✦</span>
+      <span class="twinkle" style="left:44%;bottom:6%;font-size:22px;animation-delay:1.6s">✦</span>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="mq">
+    <span>Standard Cleaning</span><span>Deep Cleaning</span><span>Move-In / Move-Out</span><span>Airbnb Turnovers</span><span>Office &amp; Commercial</span><span>Organizing &amp; Decluttering</span><span>Laundry &amp; Linens</span><span>Eco-Friendly Options</span>
+  </div>
+</div>
+
+<!-- STORY -->
+<section class="sec story" id="story" data-screen-label="Our Story">
+  <div class="wrap">
+    <div class="story-art rv">
+      <div class="card"><img src="assets/two-moms.png" alt="Two Single Moms illustration"></div>
+      <div class="tag"><b>Two single moms.</b>Every job handled with pride, precision and a touch of magic.</div>
+    </div>
+    <div>
+      <span class="eyebrow rv">Who we are</span>
+      <h2 class="rv d1">Nobody creates that feeling <em class="it">like mom.</em></h2>
+      <p class="lead rv d2">At Maids By Mom, we believe a clean home is a calm home.</p>
+      <p class="rv d2">Founded with love and attention to detail, we blend professional-quality cleaning with warmth, reliability, and the care you'd expect from family. We specialize in standard and deep cleans, move-in/move-out services, vacation rental care, office cleaning, organizing, laundry, and eco-friendly options.</p>
+      <p class="rv d3">Every job we take on is handled with pride, precision and a touch of magic — because your home deserves more than just clean. It deserves Mom clean.</p>
+      <div class="sig rv d3">— with love, the Moms</div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="sec services" id="services" data-screen-label="Services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow rv">Our services</span><h2 class="rv d1">Eight ways to lift the load.</h2></div>
+      <p class="rv d2">Discover the sparkle in your world — cleaning services as refreshing as a spring breeze, so you're free to enjoy life without the mess.</p>
+    </div>
+    <div class="explorer">
+      <ul class="svc-list" id="svcList"></ul>
+      <div class="svc-panel rv">
+        <div class="img" id="svcImg"></div>
+        <div class="body" id="svcBody"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section class="sec packages" id="packages" data-screen-label="Packages">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow rv">Packages &amp; pricing</span><h2 class="rv d1">Simple, honest <em class="it">pricing.</em></h2></div>
+      <p class="rv d2">Pick the clean that fits your home and your week. Reach out for a free quote and we'll tailor the details.</p>
+    </div>
+    <div class="pk-tools rv">
+      <button class="toggle" id="discToggle" aria-pressed="false">Show first-clean price (15% off) <span class="switch"></span></button>
+      <span class="pk-note">Prices shown per visit.</span>
+    </div>
+    <div class="pk-grid" id="pkGrid"></div>
+  </div>
+</section>
+
+<section class="promo" data-screen-label="Promo">
+  <div class="wrap">
+    <div class="promo-card rv">
+      <div class="tx">
+        <span class="eyebrow">Welcome offer</span>
+        <div class="big" style="margin-top:22px">15<sup>%</sup></div>
+        <h3>off. Dream it — we'll clean it.</h3>
+        <p>New to Maids By Mom? Your first clean is 15% off. Reach out for your free quote and let's make your space shine.</p>
+        <div><a href="#contact" class="btn btn-primary magic">Claim my 15% <span class="arr">→</span></a></div>
+      </div>
+      <div class="ph"><img src="assets/laundry-room.jpg" alt="Bright laundry room with fresh flowers and folded towels"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="manifesto" data-screen-label="Manifesto">
+  <div class="wrap">
+    <q id="mani">Your home deserves more than just clean. It deserves <span class="mom">Mom clean.</span></q>
+    <cite>The Maids By Mom promise</cite>
+  </div>
+</section>
+
+<!-- ECO -->
+<section class="sec eco" id="eco" data-screen-label="Eco-Friendly">
+  <div class="wrap">
+    <div class="eco-art rv">
+      <div class="a"><img src="assets/advanced.png" alt="Soft natural textures in a calm, clean home"></div>
+      <div class="b"><img src="assets/b3.png" alt="Eco-Friendly Cleaning badge"></div>
+      <div class="recipe"><b>A Mom tip</b>Mix equal parts water and vinegar in a spray bottle, add essential oils for scent. Baking soda to scrub, lemon juice for stains.</div>
+    </div>
+    <div>
+      <span class="eyebrow rv">Going green</span>
+      <h2 class="rv d1">Scrub smarter, sparkle brighter, <em>breathe easier.</em></h2>
+      <p class="rv d2" style="color:var(--muted);font-size:18px">Going green with cleaning is a superpower for your home and planet. We swap harsh chemicals for natural heroes like vinegar, baking soda, lemon, and essential oils — they clean, kill germs, and freshen the air.</p>
+      <div class="eco-list rv d3">
+        <div><b>Healthier home</b><span>No scary fumes or chemicals for kids, pets, or sensitive skin.</span></div>
+        <div><b>Earth-friendly</b><span>Biodegradable, plant-based products cut pollution and waste.</span></div>
+        <div><b>Gentle on fabric</b><span>Eco-friendly detergents that are tough on grime but gentle on your linens.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="sec why" data-screen-label="Why Maids By Mom">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow rv">Why Maids By Mom</span><h2 class="rv d1">The care you'd expect <em class="it">from family.</em></h2></div>
+      <p class="rv d2">Letting someone into your home is a big deal. Here's what you can count on every single visit.</p>
+    </div>
+    <div class="why-grid">
+      <div class="rv"><span class="n">01</span><h3>Family warmth</h3><p>Professional-quality cleaning delivered with the warmth and reliability of family.</p></div>
+      <div class="rv d1"><span class="n">02</span><h3>Pride &amp; precision</h3><p>Under furniture, baseboards, vents, behind appliances — the spots that usually get missed.</p></div>
+      <div class="rv d2"><span class="n">03</span><h3>Flexible scheduling</h3><p>From quick Airbnb turnovers to move-out day, we work around your calendar.</p></div>
+      <div class="rv d3"><span class="n">04</span><h3>Eco-friendly options</h3><p>Plant-based products and natural methods that are safe for kids, pets and the planet.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" data-screen-label="Contact">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow rv">Contact us</span>
+      <h2 class="rv d1">Let's make your space <em>shine.</em></h2>
+      <p class="rv d2">Reach out to schedule your cleaning service or request a FREE quote. Fill out some info and we'll be in touch shortly — we can't wait to hear from you!</p>
+      <div class="c-lines rv d3">
+        <a href="tel:7027216911"><span><small>Call or text</small>(702) 721-6911</span><span>→</span></a>
+        <a href="/cdn-cgi/l/email-protection#bbf2d7c8dee4cbdadad5dad5ded5fbc2dad3d4d495d8d4d6"><span><small>Email</small><span class="__cf_email__" data-cfemail="30795c43556f4051515e515e555e704951585f5f1e535f5d">[email&#160;protected]</span></span><span>→</span></a>
+        <a href="#contact"><span><small>Based in</small>Pinellas Park, Florida</span><span>✦</span></a>
+      </div>
+    </div>
+    <form class="form rv d2" id="quote" novalidate>
+      <h3>Free quote</h3>
+      <p class="sub">Tell us a little about your home.</p>
+      <div class="fgrid">
+        <div class="field"><input id="fn" placeholder=" " required><label for="fn">Your name</label></div>
+        <div class="field"><input id="fp" type="tel" placeholder=" "><label for="fp">Phone</label></div>
+        <div class="field full"><input id="fe" type="email" placeholder=" " required><label for="fe">Email address</label></div>
+        <div class="chips" id="chips"><span class="lbl">What can we help with?</span></div>
+        <div class="field full"><textarea id="fm" placeholder=" "></textarea><label for="fm">Anything we should know? (bedrooms, pets, dates)</label></div>
+      </div>
+      <button class="btn btn-primary magic" type="submit">Send my request <span class="arr">→</span></button>
+      <p class="priv">We respect your privacy and will never share your information.</p>
+      <div class="thanks" id="thanks">
+        <img src="assets/contact.jpg" alt="">
+        <h3 style="color:var(--plum)">Thank you!</h3>
+        <p style="color:var(--muted);margin-top:10px;max-width:320px">We've got your request and will be in touch shortly. A little magic is on its way.</p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div>
+        <a href="#top" class="brand"><img src="assets/logo-square.png" alt=""><span class="wm">Maids By Mom<small>Pinellas Park · Florida</small></span></a>
+        <p>Trusted cleaning, organizing and eco-friendly services to keep your home fresh, spotless and cared for — with a family touch.</p>
+      </div>
+      <div><h4>Services</h4><a href="#services" data-svc="0">Standard Cleaning</a><a href="#services" data-svc="1">Deep Cleaning</a><a href="#services" data-svc="2">Move-In / Move-Out</a><a href="#services" data-svc="3">Airbnb Cleaning</a></div>
+      <div><h4>More</h4><a href="#services" data-svc="4">Office &amp; Commercial</a><a href="#services" data-svc="5">Organizing</a><a href="#services" data-svc="6">Laundry &amp; Linens</a><a href="#eco">Eco-Friendly</a></div>
+      <div><h4>Say hello</h4><a href="tel:7027216911">(702) 721-6911</a><a href="/cdn-cgi/l/email-protection#733a1f00162c0312121d121d161d330a121b1c1c5d101c1e">Email us</a><a href="#contact">Book now</a></div>
+    </div>
+    <div class="f-giant">Mom clean.</div>
+    <div class="f-bot"><span>© 2026 Maids By Mom · Pinellas Park, Florida</span><span>A little magic in every clean ✦</span></div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const SERVICES=[
+ {t:'Standard Cleaning',img:'assets/b1.png',price:'$120',d:'Covers all your essential cleaning needs to keep your home fresh and sparkling. We dust and wipe down all surfaces, vacuum carpets and rugs, and mop hard floors. Bathrooms get a thorough scrub — sinks, toilets, showers and mirrors — while kitchens are cleaned top to bottom. We also tidy living areas and bedrooms, making beds and organizing clutter.'},
+ {t:'Deep Cleaning',img:'assets/b2.png',price:'$185',d:'Goes way beyond your regular tidying up — a thorough scrub-down that targets dirt, grime, and hidden messes in every nook and cranny. Under furniture, baseboards, vents, behind appliances, and those hard-to-reach spots that usually get missed. Perfect for spring cleaning, moving, or whenever your home needs an extra dose of sparkle.'},
+ {t:'Move-In / Move-Out',img:'assets/b7.png',price:null,d:'Moving is stressful enough without worrying about cleaning. We tackle every nook and cranny — from scrubbing floors and wiping down cabinets to disinfecting bathrooms and cleaning inside appliances. Let us handle the mess while you handle the memories.'},
+ {t:'Airbnb Cleaning',img:'assets/b8.png',price:null,d:'Impress your guests from check-in to check-out. Sparkling kitchens, spotless bathrooms, fresh linens, and perfectly dusted living spaces — with flexible scheduling, eco-friendly products, and a team that treats your property like their own. You handle the bookings; we\'ll handle the turnovers.'},
+ {t:'Office & Commercial',img:'assets/b6.png',price:null,d:'From dusty desks to grimy break rooms, we clean with playful precision and professional flair. Whether it\'s a small office or a sprawling commercial space, our thorough, eco-friendly methods keep your environment healthy, happy, and impressively spotless.'},
+ {t:'Organizing & Decluttering',img:'assets/b5.png',price:null,d:'Turn chaos into calm. Overflowing closets, cluttered counters, that dreaded junk drawer — we tackle it all with a smile and a strategy. We don\'t just shove things into boxes; we create tailored systems that make life easier and more enjoyable.'},
+ {t:'Laundry & Linens',img:'assets/b4.png',price:null,d:'Say goodbye to laundry-day blues. We wash, dry, fold and freshen your clothes and linens — from everyday workwear to delicates and cozy bedding — with stain treatment and eco-friendly detergents that are tough on grime but gentle on fabric.'},
+ {t:'Eco-Friendly Cleaning',img:'assets/b3.png',price:null,d:'Natural heroes like vinegar, baking soda, lemon, and essential oils clean, kill germs, and freshen the air. A healthier home with no harsh fumes for kids, pets, or sensitive skin — and biodegradable, plant-based products that are kinder to the planet.'}
+];
+const PACKAGES=[
+ {k:'Essentials',t:'Basic Service',p:120,img:'assets/b1.png',d:'Our standard clean: surfaces dusted and wiped, floors vacuumed and mopped, bathrooms scrubbed, kitchen cleaned top to bottom, beds made.'},
+ {k:'Step it up',t:'Advanced Service',p:180,img:'assets/deep.png',d:'A more thorough visit for homes that need extra attention. Ask us what we\'ll include for your space.'},
+ {k:'Most thorough',t:'Deep Cleaning',p:185,img:'assets/b2.png',d:'Under furniture, baseboards, vents, behind appliances — every nook and cranny for a home that feels brand new.',feat:true},
+ {k:'The works',t:'Deep Clean + Linens & Laundry',p:220,img:'assets/b4.png',d:'Our deep clean plus washing, drying and carefully folding your clothes and linens — soft, crisp and lasting longer.'}
+];
+
+/* services explorer */
+const list=document.getElementById('svcList'),imgBox=document.getElementById('svcImg'),body=document.getElementById('svcBody');
+SERVICES.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<button data-i="${i}"><span class="n">0${i+1}</span><span class="t">${s.t}</span><span class="pl">+</span></button>`;list.appendChild(li)});
+SERVICES.forEach((s,i)=>{const im=new Image();im.src=s.img;im.alt=s.t+' badge';im.className=i?'out':'';imgBox.appendChild(im)});
+let cur=-1;
+function showSvc(i){
+  if(i===cur)return;cur=i;
+  list.querySelectorAll('button').forEach(b=>b.classList.toggle('on',+b.dataset.i===i));
+  imgBox.querySelectorAll('img').forEach((im,j)=>im.classList.toggle('out',j!==i));
+  const s=SERVICES[i];
+  body.innerHTML=`<div class="fadeswap"><h3>${s.t}</h3><p>${s.d}</p><div class="row"><span class="from">${s.price?`From<b>${s.price}</b>`:'Pricing by free quote'}</span><a href="#contact" class="btn btn-primary magic" data-pick="${s.t}">Book this clean <span class="arr">→</span></a></div></div>`;
+  try{localStorage.setItem('mbm-svc',i)}catch(e){}
+}
+list.addEventListener('click',e=>{const b=e.target.closest('button');if(b)showSvc(+b.dataset.i)});
+list.addEventListener('mouseover',e=>{const b=e.target.closest('button');if(b&&matchMedia('(hover:hover)').matches)showSvc(+b.dataset.i)});
+showSvc(+(localStorage.getItem('mbm-svc')||0));
+document.querySelectorAll('[data-svc]').forEach(a=>a.addEventListener('click',()=>showSvc(+a.dataset.svc)));
+
+/* packages */
+const grid=document.getElementById('pkGrid');
+PACKAGES.forEach((p,i)=>{
+  const el=document.createElement('article');el.className='pk rv'+(p.feat?' feat':'')+(i?' d'+i:'');
+  el.innerHTML=`${p.feat?'<span class="ribbon">Mom\'s pick</span>':''}<div class="ph"><img src="${p.img}" alt="${p.t}"></div><div class="in"><span class="k">${p.k}</span><h3>${p.t}</h3><p>${p.d}</p><div class="price"><span class="d">$</span><span class="v" data-base="${p.p}">${p.p}</span><span class="was">$${p.p}</span></div><a href="#contact" class="btn btn-primary magic" data-pick="${p.t}">Book this package <span class="arr">→</span></a></div>`;
+  grid.appendChild(el);
+});
+const tg=document.getElementById('discToggle');
+function animateNum(el,to){const from=+el.textContent;const t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/600),e=1-Math.pow(1-k,3);el.textContent=Math.round(from+(to-from)*e);if(k<1)requestAnimationFrame(f)})(t0)}
+tg.addEventListener('click',()=>{const on=document.body.classList.toggle('disc-on');tg.setAttribute('aria-pressed',on);document.querySelectorAll('.pk .v').forEach(v=>{const b=+v.dataset.base;animateNum(v,on?Math.round(b*.85):b)})});
+
+/* chips */
+const chips=document.getElementById('chips');
+['Standard','Deep clean','Move-in / out','Airbnb','Office','Organizing','Laundry & linens','Eco-friendly'].forEach(c=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=c;b.onclick=()=>b.classList.toggle('on');chips.appendChild(b)});
+document.addEventListener('click',e=>{const a=e.target.closest('[data-pick]');if(!a)return;const t=a.dataset.pick.toLowerCase();chips.querySelectorAll('.chip').forEach(c=>{const k=c.textContent.toLowerCase();if(t.includes(k.split(' ')[0])||(t.includes('basic')&&k==='standard')||(t.includes('laundry')&&k.includes('laundry')))c.classList.add('on')})});
+
+/* form */
+document.getElementById('quote').addEventListener('submit',e=>{e.preventDefault();const n=document.getElementById('fn'),m=document.getElementById('fe');let ok=true;[n,m].forEach(f=>{const bad=!f.value.trim()||(f.type==='email'&&!/.+@.+\..+/.test(f.value));f.style.borderColor=bad?'#c0587a':'';if(bad)ok=false});if(ok)document.getElementById('thanks').classList.add('show')});
+
+/* marquee duplicate */
+const mq=document.getElementById('mq');mq.innerHTML+=mq.innerHTML;
+
+/* manifesto words */
+const mani=document.getElementById('mani');
+(function split(node){[...node.childNodes].forEach(n=>{if(n.nodeType===3){const f=document.createDocumentFragment();n.textContent.split(/(\s+)/).forEach(w=>{if(!w.trim()){f.appendChild(document.createTextNode(w));return}const s=document.createElement('span');s.className='w';s.textContent=w;f.appendChild(s)});n.replaceWith(f)}else if(n.nodeType===1&&!n.classList.contains('w')){if(n.classList.contains('mom')){n.classList.add('w')}else split(n)}})})(mani);
+const words=[...mani.querySelectorAll('.w')];
+
+/* scroll */
+const nav=document.getElementById('nav');
+function onScroll(){
+  nav.classList.toggle('scrolled',scrollY>40);
+  const r=mani.getBoundingClientRect(),vh=innerHeight;
+  const p=Math.min(1,Math.max(0,(vh*0.85-r.top)/(r.height+vh*0.35)));
+  const n=Math.round(p*words.length);words.forEach((w,i)=>w.classList.toggle('lit',i<n));
+  const ids=['story','services','packages','eco','contact'];let act='';ids.forEach(id=>{const el=document.getElementById(id);if(el.getBoundingClientRect().top<vh*.4)act=id});
+  document.querySelectorAll('.links a').forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+act));
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* mobile menu */
+document.getElementById('burger').onclick=()=>document.body.classList.toggle('menu-open');
+document.querySelectorAll('#mm a').forEach(a=>a.onclick=()=>document.body.classList.remove('menu-open'));
+
+/* sparkle burst on magic buttons */
+document.addEventListener('click',e=>{const b=e.target.closest('.magic');if(!b)return;for(let i=0;i<10;i++){const s=document.createElement('span');s.className='spark';s.textContent='✦';const a=Math.random()*Math.PI*2,d=40+Math.random()*50;s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';s.style.setProperty('--dx',Math.cos(a)*d+'px');s.style.setProperty('--dy',Math.sin(a)*d+'px');s.style.fontSize=(10+Math.random()*12)+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),850)}});
+
+addEventListener('load',()=>document.body.classList.add('loaded'));
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4bc70e2c01a94c73b74392e4234840661791215815920" integrity="sha512-L0ha0OXavK/8okipN9F8BtP84dg9DUhPERbBXzwI6dgTA55d2+yweo3pn5CSFYs45/r8md2+xvUPtTdvTNRfjA==" data-cf-beacon='{"version":"2024.11.0","token":"4edd5f8ec12a48cfa682ab8261b80a79","spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
